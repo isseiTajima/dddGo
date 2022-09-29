@@ -1,9 +1,8 @@
 package repository
 
-import "github.com/isseiTajima/dddGo/domain/model"
+import "dddgo/domain/model"
 
 type CharacterRepository interface {
-	Insert(userId, name) error
-	FindById(userId string) (*domain.character, error)
+	Insert(userId int, name string) error
+	FindById(userId string) (*model.Character, error)
 }
-
