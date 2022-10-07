@@ -1,7 +1,11 @@
 package model
 
+import (
+	"github.com/google/uuid"
+)
+
 type Character struct {
-	id   int
+	id   string
 	name string
 
 	// private final Level level;
@@ -14,14 +18,15 @@ type Character struct {
 	// private final Job job;
 }
 
-func NewCharacter(id int, name string) *Character {
+func NewCharacter(name string) *Character {
 	c := new(Character)
-	c.id = id
+	u := uuid.New()
+	c.id = u.String()
 	c.name = name
 	return c
 }
 
-func (c Character) GetId() int {
+func (c Character) GetId() string {
 	return c.id
 }
 func (c Character) GetName() string {

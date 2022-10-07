@@ -14,7 +14,7 @@ func main() {
 	// サーバ起動
 	fmt.Println("Server Running at http://localhost:8080")
 	// log.Fatal(http.ListenAndServe(":8080", router))
-	test := model.NewCharacter(1, "たろう")
+	test := model.NewCharacter("たろう")
 	fmt.Println(test.GetId())
 	fmt.Println(test.GetName())
 
