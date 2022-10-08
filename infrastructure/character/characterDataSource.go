@@ -1,23 +1,32 @@
 package infrastructure
 
-import "dddgo/domain/model"
+import (
+	"dddgo/domain/model"
+	"dddgo/domain/repository"
+)
 
-type CharacterDataSource struct {
+// CharacterRepositoryの構造体
+type CharacterRepository struct {
 	characterList []model.Character
 }
 
-func (c *CharacterDataSource) InsertCharacter(name string) {
-	c.characterList = append(c.characterList, *model.NewCharacter(name))
-
+func NewCharacterRepository() repository.CharacterRepository {
+	return &CharacterRepository{}
 }
 
-func (c *CharacterDataSource) FindById(userId string) *model.Character {
+func (c *CharacterRepository) Insert(name string) (*model.Character, error) {
+	chara := *model.NewCharacter(name)
+	c.characterList = append(c.characterList, chara)
+	return &chara, nil
+}
+
+func (c *CharacterRepository) FindById(userId string) (*model.Character, error) {
 
 	for _, chara := range c.characterList {
 		if chara.GetId() == userId {
-			return &chara
+			return &chara, nil
 		}
 	}
 
-	return nil
+	return nil, nil
 }
